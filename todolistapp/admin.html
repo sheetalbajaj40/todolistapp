@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="admin.css">
+	<style>
+		.container {
+			display: flex;
+			border: 2px solid black;
+        
+		}
+
+		.box {
+			flex: 1;
+			margin: 15px;
+			padding: 40px;
+			border: 2px solid #ccc;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="box">users<h1>3</h1></div>
+		<div class="box">login users<h1>3</h1></div>
+		<div class="box">logout users<h1>2</h1></div>
+	</div>
+    <div class="dropdown-container">
+
+        <select class="dropdown">
+            <option value="option1">All</option>
+    
+            <option value="option1">user1</option>
+    
+            <option value="option3">user2</option>
+
+            <option value="option3">user3</option>
+    
+        </select>
+    
+    </div>
+    <table>
+        <tr>
+          <th>Users</th>
+          <th>Task</th>
+          <th>Create</th>
+          <th>Complete</th>
+        </tr>
+        
+      </table>
+      <table id="admin-task-table" >
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Task</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+    </table>
+    
+
+
+</body>
+<script src="admin.js"></script>
+</html>

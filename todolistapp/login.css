@@ -1,0 +1,85 @@
+/* General Body Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #e0f7fa; /* Light teal background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for Login */
+#login-container {
+    background: #ffffff; /* White background for the card */
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px; /* Smooth rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for elevation */
+    text-align: center;
+}
+
+/* Login Heading */
+#login-container h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #00796b; /* Teal color */
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Input Focus Effect */
+input:focus {
+    border-color: #00796b; /* Teal border on focus */
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #00796b; /* Teal background */
+    color: #ffffff; /* White text */
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover & Active Effects for Button */
+button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+    transform: scale(1.03); /* Slightly enlarge on hover */
+}
+
+button:active {
+    transform: scale(1); /* Reset scale on click */
+}
+
+/* Error Message Styling */
+#error-msg {
+    margin-top: 15px;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    #login-container {
+        width: 90%;
+    }
+}
