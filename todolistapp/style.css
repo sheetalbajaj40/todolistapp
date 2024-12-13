@@ -97,7 +97,55 @@ body {
   li .delete-btn:hover {
     background: #c82333;
   }
-
+  li {
+    background: #f9f9f9;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li span {
+    flex: 1; /* Takes up the remaining space */
+    margin-right: 10px; /* Adds spacing between text and buttons */
+    overflow: hidden; /* Prevents long text from breaking layout */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+    white-space: nowrap; /* Keeps text on one line */
+  }
+  
+  li .button-container {
+    display: flex; /* Groups buttons into a flex container */
+    gap: 5px; /* Adds consistent spacing between buttons */
+  }
+  
+  .tick-btn,
+  .edit-btn,
+  .delete-btn {
+    padding: 5px 10px; /* Consistent button padding */
+    font-size: 14px; /* Ensure uniform font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .edit-btn {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e0a800;
+  }
+  
+  
+ 
+  
   
   .logout-btn {
     position: absolute;

@@ -131,7 +131,7 @@ const newTodoInput = document.getElementById('todo-input');
 
 
 const getDataAndDisplay = () => {
-  fetch('https://dummyjson.com/todos')
+  fetch('https://dummyjson.com/todos?limit=5')
     .then(response => response.json())
     .then(data => {
       const todos = data.todos;
