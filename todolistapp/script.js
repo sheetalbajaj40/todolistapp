@@ -76,18 +76,8 @@ function saveTaskForUser(taskValue) {
 }
 
 
-function loadTasksForUser() {
-  const tasks = JSON.parse(localStorage.getItem(currentUser)) || [];
-  tasks.forEach(task => {
-    addTaskToUI(task.taskValue);
-    if (task.isCompleted) {
-      const taskItem = document.querySelector('span');
-      taskItem.style.textDecoration = "line-through";
-    }
-  });
 
-  getDataAndDisplay();
-}
+
 
 
 function removeTaskForUser(taskValue) {
@@ -128,23 +118,67 @@ document.getElementById("logout-btn").addEventListener("click", function () {
 const newTodoInput = document.getElementById('todo-input');
 
 
+function loadTasksForUser() {
+  const tasksFromLocalStorage = JSON.parse(localStorage.getItem(currentUser)) || [];
+
+ 
+  getDataAndDisplay(tasksFromLocalStorage);  
+}
 
 
-const getDataAndDisplay = () => {
+const getDataAndDisplay = (localStorageTasks) => {
   fetch('https://dummyjson.com/todos?limit=5')
     .then(response => response.json())
     .then(data => {
-      const todos = data.todos;
+      const apiTasks = data.todos;  
+      const allTasks = [...localStorageTasks, ...apiTasks];  
+
+     
       const todoListElement = document.getElementById('todo-list');
-
-   
-      todoListElement.innerHTML = '';
-
-      todos.forEach(todo => {
-        const newTask = document.createElement("li");
-        console.log(todo);
-        addTaskToUI(todo.todo);
+      todoListElement.innerHTML = '';  
+     
+      allTasks.forEach(task => {
+        addTaskToUI(task.todo || task.taskValue); 
       });
     })
     .catch(error => console.error('Error fetching todos:', error));
+};
+
+
+
+document.getElementById("add-btn").addEventListener("click", function () {
+  const taskInput = document.getElementById("todo-input");
+  const taskValue = taskInput.value.trim();
+
+  if (taskValue === "") {
+    alert("Please enter a task!");
+    return;
+  }
+
+
+  postTaskToAPI(taskValue);
+   addTaskToUI(taskValue);
+  saveTaskForUser(taskValue);
+
+  taskInput.value = ""; 
+});
+
+
+const postTaskToAPI = (taskValue) => {
+  fetch('https://dummyjson.com/todos/add', {
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      todo: taskValue,  
+    }),
+  })
+    .then(response => response.json())  
+    .then(data => {
+      console.log('New task created:', data);  
+    })
+    .catch(error => {
+      console.error('Error posting new task:', error);  
+    });
 };
