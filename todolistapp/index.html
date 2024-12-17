@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
   <link rel="stylesheet" href="style.css">
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
-  <body> 
-    <nav class="navbar"> 
-        <h1>To-Do List App</h1> 
-      <button id="logout-btn" class="logout-btn">Logout</button>
-    </nav>
-    <div class="todo-container">
-      <div class="input-container">
-        <input type="text" id="todo-input" placeholder="Add a new task">
-        <button id="add-btn">Add</button>
-    
-      </div>
-      <ul id="todo-list"></ul>
-    </div>
-   <script src="script.js"></script>
- </body>
-</html>
+<body>
+ 
+  <nav class="navbar">
+    <h1>To-Do List App</h1>
+    <button id="logout-btn" class="logout-btn">Logout</button>
+  </nav>
 
+  
+  <div class="todo-container">
+    <div class="input-container">
+      <input type="text" id="todo-input" placeholder="Add a new task">
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  
+  <script src="script.js"></script>
+</body>
+</html>
