@@ -15,6 +15,7 @@ document.getElementById("add-btn").addEventListener("click", function () {
     alert("Please enter a task!");
     return;
   }
+  postTaskToAPI(taskValue);
 
   addTaskToUI(taskValue);
   saveTaskForUser(taskValue);
@@ -23,10 +24,11 @@ document.getElementById("add-btn").addEventListener("click", function () {
 });
 
 
+
+
 function addTaskToUI(taskValue) {
   const newTask = document.createElement("li");
-
-  const taskText = document.createElement("span");
+   const taskText = document.createElement("span");
   taskText.textContent = taskValue;
 
   const tickBtn = document.createElement("button");
@@ -38,8 +40,7 @@ function addTaskToUI(taskValue) {
     toggleTaskCompletion(taskValue, isCompleted);
   });
 
-
-  const editBtn = document.createElement("button");
+const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
   editBtn.classList.add("edit-btn");
   editBtn.addEventListener("click", function () {
@@ -50,8 +51,7 @@ function addTaskToUI(taskValue) {
     }
   });
 
- 
-  const deleteBtn = document.createElement("button");
+ const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
   deleteBtn.classList.add("delete-btn");
   deleteBtn.addEventListener("click", function () {
@@ -63,22 +63,14 @@ function addTaskToUI(taskValue) {
   newTask.appendChild(tickBtn);
   newTask.appendChild(editBtn);
   newTask.appendChild(deleteBtn);
-
-
   document.getElementById("todo-list").appendChild(newTask);
 }
-
 
 function saveTaskForUser(taskValue) {
   const tasks = JSON.parse(localStorage.getItem(currentUser)) || [];
   tasks.push({ taskValue, isCompleted: false });
   localStorage.setItem(currentUser, JSON.stringify(tasks));
 }
-
-
-
-
-
 
 function removeTaskForUser(taskValue) {
   let tasks = JSON.parse(localStorage.getItem(currentUser)) || [];
@@ -97,7 +89,6 @@ function updateTaskInLocalStorage(oldTaskValue, newTaskValue) {
   localStorage.setItem(currentUser, JSON.stringify(tasks));
 }
 
-
 function toggleTaskCompletion(taskValue, isCompleted) {
   let tasks = JSON.parse(localStorage.getItem(currentUser)) || [];
   tasks = tasks.map(task => {
@@ -106,25 +97,19 @@ function toggleTaskCompletion(taskValue, isCompleted) {
     }
     return task;
   });
+
   localStorage.setItem(currentUser, JSON.stringify(tasks));
 }
-
-
 document.getElementById("logout-btn").addEventListener("click", function () {
   localStorage.removeItem("currentUser");
   window.location.href = "login.html";
 });
 
 const newTodoInput = document.getElementById('todo-input');
-
-
 function loadTasksForUser() {
   const tasksFromLocalStorage = JSON.parse(localStorage.getItem(currentUser)) || [];
-
- 
   getDataAndDisplay(tasksFromLocalStorage);  
 }
-
 
 const getDataAndDisplay = (localStorageTasks) => {
   fetch('https://dummyjson.com/todos?limit=5')
@@ -132,9 +117,7 @@ const getDataAndDisplay = (localStorageTasks) => {
     .then(data => {
       const apiTasks = data.todos;  
       const allTasks = [...localStorageTasks, ...apiTasks];  
-
-     
-      const todoListElement = document.getElementById('todo-list');
+const todoListElement = document.getElementById('todo-list');
       todoListElement.innerHTML = '';  
      
       allTasks.forEach(task => {
@@ -144,34 +127,17 @@ const getDataAndDisplay = (localStorageTasks) => {
     .catch(error => console.error('Error fetching todos:', error));
 };
 
-
-
-document.getElementById("add-btn").addEventListener("click", function () {
-  const taskInput = document.getElementById("todo-input");
-  const taskValue = taskInput.value.trim();
-
-  if (taskValue === "") {
-    alert("Please enter a task!");
-    return;
-  }
-
-
-  postTaskToAPI(taskValue);
-   addTaskToUI(taskValue);
-  saveTaskForUser(taskValue);
-
-  taskInput.value = ""; 
-});
-
-
 const postTaskToAPI = (taskValue) => {
+  console.log('ttttt');
   fetch('https://dummyjson.com/todos/add', {
     method: 'POST',  
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      todo: taskValue,  
+      todo: taskValue, 
+      completed: false,
+    userId: 5, 
     }),
   })
     .then(response => response.json())  
